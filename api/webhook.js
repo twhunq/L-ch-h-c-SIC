@@ -1,10 +1,11 @@
 /**
- * Telegram Webhook – UI nút bấm + đăng ký multi-user.
+ * Telegram Webhook – UI nút bấm (inline + reply keyboard).
+ * Bấm nút → luôn gửi tin nhắn mới (ổn định hơn editMessage).
  */
 const {
   fetchSchedule,
   todayClasses,
-  nextClass,
+  classFocus,
   publishedWeekClasses,
   targetWeekRange,
   nowPartsVN,
@@ -20,13 +21,9 @@ const {
   msgStatus,
   msgMorning,
   msgPreclass,
-  esc,
+  focusLineFrom,
 } = require("../lib/messages");
-const {
-  sendMessage,
-  editMessageText,
-  answerCallbackQuery,
-} = require("../lib/telegram");
+const { sendMessage, answerCallbackQuery } = require("../lib/telegram");
 const {
   addSubscriber,
   removeSubscriber,
@@ -55,6 +52,13 @@ function checkSecret(req) {
 function parseUpdate(req) {
   let body = req.body;
   if (body == null) return {};
+  if (Buffer.isBuffer(body)) {
+    try {
+      return JSON.parse(body.toString("utf8") || "{}");
+    } catch {
+      return {};
+    }
+  }
   if (typeof body === "string") {
     try {
       return JSON.parse(body || "{}");
@@ -74,68 +78,67 @@ async function loadScheduleSafe() {
   }
 }
 
-async function handleAction(action, ctx) {
-  const { chatId, name, messageId, isCallback } = ctx;
-  const send = async (text, markup) => {
-    if (isCallback && messageId) {
-      await editMessageText(chatId, messageId, text, {
-        reply_markup: markup || inlineMain({ subscribed: await isSubscribed(chatId) }),
-      });
-    } else {
-      await sendMessage(chatId, text, {
-        reply_markup: markup || inlineMain({ subscribed: await isSubscribed(chatId) }),
-      });
-    }
-  };
+/** Luôn gửi tin MỚI — user luôn thấy phản hồi khi bấm nút. */
+async function reply(chatId, text, markup) {
+  const registered = await isSubscribed(chatId).catch(() => false);
+  return sendMessage(chatId, text, {
+    reply_markup: markup || inlineMain({ subscribed: registered }),
+  });
+}
 
-  // ── start / menu ──
-  if (action === "start" || action === "menu") {
+async function handleAction(action, ctx) {
+  const { chatId, name } = ctx;
+
+  // ── start ──
+  if (action === "start") {
     let reg = { stored: false };
-    if (action === "start") {
-      try {
-        reg = await addSubscriber(chatId);
-      } catch (e) {
-        reg = { stored: false, reason: String(e.message || e) };
-      }
+    try {
+      reg = await addSubscriber(chatId);
+    } catch (e) {
+      reg = { stored: false, reason: String(e.message || e) };
     }
-    const registered = action === "start" ? !!reg.stored || (await isSubscribed(chatId)) : await isSubscribed(chatId);
+    const registered = !!reg.stored || (await isSubscribed(chatId).catch(() => false));
     const data = await loadScheduleSafe();
     const course = data?.course || "SIC2026 ICTU";
-    const nxt = data ? nextClass(data) : null;
+    const focus = data ? classFocus(data) : null;
 
-    if (action === "start") {
-      const text = msgWelcome(name, {
+    await sendMessage(
+      chatId,
+      msgWelcome(name, {
         registered,
         redisOk: redisConfigured(),
-        nextDay: nxt,
+        focus,
         course,
-      });
-      await sendMessage(chatId, text, {
-        reply_markup: replyMenu(),
-      });
-      await sendMessage(chatId, msgMenu({
-        registered,
-        nextSummary: nxt ? `${nxt.date} · ${nxt.time || ""}` : "",
-      }), {
-        reply_markup: inlineMain({ subscribed: registered }),
-      });
-      return { ok: true, action, registered };
-    }
-
-    // menu
-    await send(
+      }),
+      { reply_markup: registered ? replyMenu() : replyMenuStopped() }
+    );
+    await sendMessage(
+      chatId,
       msgMenu({
         registered,
-        nextSummary: nxt ? `${nxt.date} · ${nxt.time || ""}` : "",
+        focusLine: focusLineFrom(focus),
       }),
-      inlineMain({ subscribed: registered })
+      { reply_markup: inlineMain({ subscribed: registered }) }
     );
-    // đảm bảo có reply keyboard
-    if (!isCallback) {
-      await sendMessage(chatId, "👇 Chọn nút bên dưới màn hình", {
-        reply_markup: registered ? replyMenu() : replyMenuStopped(),
-      });
-    }
+    return { ok: true, action, registered };
+  }
+
+  // ── menu ──
+  if (action === "menu") {
+    const registered = await isSubscribed(chatId).catch(() => false);
+    const data = await loadScheduleSafe();
+    const focus = data ? classFocus(data) : null;
+    await sendMessage(
+      chatId,
+      msgMenu({
+        registered,
+        focusLine: focusLineFrom(focus),
+      }),
+      { reply_markup: inlineMain({ subscribed: registered }) }
+    );
+    await sendMessage(chatId, "👇 Chọn nút bên dưới hoặc bấm các nút trong tin nhắn", {
+      reply_markup: registered ? replyMenu() : replyMenuStopped(),
+    });
     return { ok: true, action };
   }
 
@@ -148,14 +151,12 @@ async function handleAction(action, ctx) {
     await sendMessage(chatId, msgStopped(), {
       reply_markup: replyMenuStopped(),
     });
-    await sendMessage(chatId, "Bạn vẫn xem lịch bằng nút bên dưới.", {
-      reply_markup: inlineMain({ subscribed: false }),
-    });
+    await reply(chatId, "Bạn vẫn xem lịch bằng nút bên dưới.", inlineMain({ subscribed: false }));
     return { ok: true, action: "stop" };
   }
 
   if (action === "help") {
-    await send(msgHelp(), inlineMain({ subscribed: await isSubscribed(chatId) }));
+    await reply(chatId, msgHelp(), inlineMain({ subscribed: await isSubscribed(chatId).catch(() => false) }));
     return { ok: true, action: "help" };
   }
 
@@ -181,48 +182,47 @@ async function handleAction(action, ctx) {
     return { ok: true, action: "web" };
   }
 
-  // schedule actions
   const data = await loadScheduleSafe();
   if (!data) {
-    await sendMessage(
+    await reply(
       chatId,
-      "❌ Không tải được lịch từ Google Sheet.\nThử lại sau hoặc mở web: " + WEB_HREF,
-      { reply_markup: inlineMain({ subscribed: await isSubscribed(chatId) }) }
+      "❌ Không tải được lịch từ Google Sheet.\nThử lại sau hoặc mở web:\n" + WEB_HREF
     );
-    return { ok: false, action };
+    return { ok: false, action, error: "sheet" };
   }
 
   const course = data.course || "SIC2026";
-  const registered = await isSubscribed(chatId);
+  const registered = await isSubscribed(chatId).catch(() => false);
 
   if (action === "today") {
     const days = todayClasses(data);
-    await send(msgToday(days), inlineAfterClass());
+    await reply(chatId, msgToday(days), inlineAfterClass());
     return { ok: true, action: "today" };
   }
 
   if (action === "next") {
-    const nxt = nextClass(data);
-    await send(msgNext(nxt), inlineAfterClass());
-    return { ok: true, action: "next" };
+    const focus = classFocus(data);
+    await reply(chatId, msgNext(focus.focus, focus), inlineAfterClass());
+    return { ok: true, action: "next", status: focus.status };
   }
 
   if (action === "week" || action === "refresh") {
     const vn = nowPartsVN();
     const range = targetWeekRange(vn.iso);
     const days = publishedWeekClasses(data);
-    await send(msgWeeklyUpdate(days, course, range), inlineAfterClass());
+    await reply(chatId, msgWeeklyUpdate(days, course, range), inlineAfterClass());
     return { ok: true, action };
   }
 
   if (action === "status") {
     const vn = nowPartsVN();
     const stats = await subscriberStats();
-    await send(
+    await reply(
+      chatId,
       msgStatus({
         registered,
         stats,
-        nextDay: nextClass(data),
+        focus: classFocus(data),
         vn,
         chatId,
       }),
@@ -235,28 +235,24 @@ async function handleAction(action, ctx) {
     const days = todayClasses(data);
     const day = days[0] || data.days?.[0];
     const vn = nowPartsVN();
-    await sendMessage(
+    await reply(
       chatId,
       "🧪 <b>Xem thử thông báo</b>\n\n" +
         msgWeeklyUpdate(publishedWeekClasses(data), course, targetWeekRange(vn.iso)),
-      { reply_markup: inlineAfterClass() }
+      inlineAfterClass()
     );
     if (day) {
-      await sendMessage(chatId, msgMorning(day, course), {
-        reply_markup: inlineAfterClass(),
-      });
-      await sendMessage(chatId, msgPreclass(day, course), {
-        reply_markup: inlineAfterClass(),
-      });
+      await reply(chatId, msgMorning(day, course), inlineAfterClass());
+      await reply(chatId, msgPreclass(day, course), inlineAfterClass());
     }
     return { ok: true, action: "test" };
   }
 
-  await send(
-    "🤔 Không rõ yêu cầu.\nBấm <b>🏠 Menu</b> hoặc chọn nút bên dưới.",
-    inlineMain({ subscribed: registered })
+  await reply(
+    chatId,
+    "🤔 Không rõ yêu cầu.\nBấm <b>🏠 Menu</b> hoặc chọn nút bên dưới.\n\nHoặc gõ: /today /next /week /help"
   );
-  return { ok: true, action: "unknown" };
+  return { ok: true, action: "unknown", raw: action };
 }
 
 module.exports = async function handler(req, res) {
@@ -265,35 +261,60 @@ module.exports = async function handler(req, res) {
       ok: true,
       service: "telegram-webhook-ui",
       web: WEB_HREF,
+      hint: "POST from Telegram. Re-run /api/setup-webhook if buttons don't work.",
     });
   }
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false });
   }
   if (!checkSecret(req)) {
+    console.error("webhook bad secret");
     return res.status(200).json({ ok: false, error: "bad secret" });
   }
 
   try {
     const update = parseUpdate(req);
+    console.log(
+      "update keys:",
+      Object.keys(update || {}),
+      "cb:",
+      !!update.callback_query,
+      "msg:",
+      !!update.message
+    );
 
-    // ── Inline button callbacks ──
+    // ── Inline buttons ──
     if (update.callback_query) {
       const cq = update.callback_query;
       const chatId = String(cq.message?.chat?.id || cq.from?.id || "");
-      const messageId = cq.message?.message_id;
       const name = cq.from?.first_name || cq.from?.username || chatId;
-      const data = (cq.data || "").trim();
-      const action = data.startsWith("nav:") ? data.slice(4) : data;
+      const raw = (cq.data || "").trim();
+      const action = raw.startsWith("nav:") ? raw.slice(4) : raw;
 
-      await answerCallbackQuery(cq.id, actionLabel(action));
-      const result = await handleAction(action, {
-        chatId,
-        name,
-        messageId,
-        isCallback: true,
-      });
-      return res.status(200).json({ ok: true, type: "callback", ...result });
+      // Trả lời callback ngay (bỏ loading trên nút)
+      try {
+        await answerCallbackQuery(cq.id, actionLabel(action));
+      } catch (e) {
+        console.error("answerCallback", e);
+      }
+
+      try {
+        const result = await handleAction(action || "menu", {
+          chatId,
+          name,
+          isCallback: true,
+        });
+        return res.status(200).json({ ok: true, type: "callback", action, ...result });
+      } catch (e) {
+        console.error("callback handle", e);
+        try {
+          await sendMessage(
+            chatId,
+            "⚠️ Lỗi khi xử lý nút: " + String(e.message || e).slice(0, 200) + "\nThử gõ /today"
+          );
+        } catch (_) {}
+        return res.status(200).json({ ok: false, error: String(e.message || e) });
+      }
     }
 
     const msg = update.message || update.edited_message;
@@ -303,9 +324,9 @@ module.exports = async function handler(req, res) {
 
     const chatId = String(msg.chat.id);
     const text = (msg.text || msg.caption || "").trim();
-    const name = msg.from?.first_name || msg.chat.first_name || msg.chat.username || chatId;
+    const name =
+      msg.from?.first_name || msg.chat.first_name || msg.chat.username || chatId;
 
-    // WebApp data (nếu có)
     if (msg.web_app_data) {
       await sendMessage(chatId, "✅ Đã nhận dữ liệu từ web app.", {
         reply_markup: replyMenu(),
@@ -314,26 +335,26 @@ module.exports = async function handler(req, res) {
     }
 
     let action = mapTextToAction(text);
-    if (!action && text) {
-      // mặc định mở menu nếu chat linh tinh
-      action = "menu";
-    }
-    if (!text) {
-      action = "menu";
-    }
+    if (text && text.toLowerCase().startsWith("/start")) action = "start";
+    if (!action) action = text ? "menu" : "menu";
 
-    // /start luôn đăng ký
-    if (text.toLowerCase().startsWith("/start")) {
-      action = "start";
+    try {
+      const result = await handleAction(action, {
+        chatId,
+        name,
+        isCallback: false,
+      });
+      return res.status(200).json({ ok: true, type: "message", action, ...result });
+    } catch (e) {
+      console.error("message handle", e);
+      try {
+        await sendMessage(
+          chatId,
+          "⚠️ Có lỗi: " + String(e.message || e).slice(0, 200) + "\nThử /start lại."
+        );
+      } catch (_) {}
+      return res.status(200).json({ ok: false, error: String(e.message || e) });
     }
-
-    const result = await handleAction(action, {
-      chatId,
-      name,
-      messageId: null,
-      isCallback: false,
-    });
-    return res.status(200).json({ ok: true, type: "message", ...result });
   } catch (e) {
     console.error("webhook error", e);
     return res.status(200).json({ ok: false, error: String(e.message || e) });
@@ -342,14 +363,14 @@ module.exports = async function handler(req, res) {
 
 function actionLabel(a) {
   const map = {
-    today: "📅 Hôm nay",
-    next: "📌 Buổi tới",
-    week: "🗓 Tuần này",
+    today: "📅 Đang tải…",
+    next: "📌 Đang tải…",
+    week: "🗓 Đang tải…",
     menu: "🏠 Menu",
     help: "ℹ️ Trợ giúp",
-    start: "✅ Đã bật",
-    stop: "🔕 Đã tắt",
-    refresh: "🔄 Làm mới",
+    start: "✅ OK",
+    stop: "🔕 OK",
+    refresh: "🔄 Đang tải…",
     web: "🌐 Web",
     status: "📊 Status",
   };
