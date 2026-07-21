@@ -6,6 +6,7 @@ const {
   fetchSchedule,
   todayClasses,
   classFocus,
+  upcomingClass,
   publishedWeekClasses,
   targetWeekRange,
   nowPartsVN,
@@ -201,9 +202,16 @@ async function handleAction(action, ctx) {
   }
 
   if (action === "next") {
+    // "Buổi tới" = buổi CHƯA bắt đầu (không phải buổi đang học)
     const focus = classFocus(data);
-    await reply(chatId, msgNext(focus.focus, focus), inlineAfterClass());
-    return { ok: true, action: "next", status: focus.status };
+    const upcoming = upcomingClass(data);
+    await reply(chatId, msgNext(upcoming, focus), inlineAfterClass());
+    return {
+      ok: true,
+      action: "next",
+      status: focus.status,
+      upcoming: upcoming?.date || null,
+    };
   }
 
   if (action === "week" || action === "refresh") {
