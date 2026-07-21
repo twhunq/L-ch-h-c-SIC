@@ -3,427 +3,336 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b1f3a" />
-  <meta name="description" content="Lịch học hàng tuần – SIC2026 ICTU Samsung Innovation" />
-  <title>Lịch học SIC2026 · Samsung ICTU</title>
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Lịch học SIC2026 ICTU – theo dõi nhanh" />
+  <title>Lịch học SIC2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #07111f;
-      --bg2: #0c1a2e;
-      --card: #112238;
-      --card2: #15304a;
-      --border: rgba(120, 180, 255, 0.14);
-      --text: #e8f1ff;
-      --muted: #8fa6c4;
-      --blue: #3b82f6;
-      --blue2: #60a5fa;
-      --cyan: #22d3ee;
-      --green: #34d399;
+      --bg: #0b1220;
+      --card: #131c2e;
+      --line: rgba(148, 163, 184, 0.16);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --blue: #38bdf8;
+      --green: #4ade80;
       --amber: #fbbf24;
       --rose: #fb7185;
-      --today: linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%);
-      --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-      --radius: 18px;
-      --safe-b: env(safe-area-inset-bottom, 0px);
+      --accent: #2563eb;
+      --safe: env(safe-area-inset-bottom, 0px);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
       font-family: "Be Vietnam Pro", system-ui, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(59, 130, 246, 0.22), transparent 55%),
-        radial-gradient(900px 500px at 100% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.5;
-      padding-bottom: calc(88px + var(--safe-b));
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 16px calc(24px + var(--safe));
     }
 
-    .app { max-width: 920px; margin: 0 auto; padding: 16px 16px 0; }
-
-    /* Header */
-    header.app-header {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      align-items: flex-start; justify-content: space-between;
-      margin-bottom: 18px; padding-top: 8px;
+    /* Top bar */
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
     }
-    .brand { display: flex; gap: 12px; align-items: center; }
-    .logo {
-      width: 46px; height: 46px; border-radius: 14px;
-      background: var(--today);
-      display: grid; place-items: center;
-      font-weight: 800; font-size: 15px; letter-spacing: -0.5px;
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+    .top h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .top .sub {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+    .icon-btn {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
       flex-shrink: 0;
     }
-    .brand h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
-    .brand p { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+    .icon-btn:disabled { opacity: 0.5; }
 
-    .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    button.btn {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 9px 14px;
-      font: inherit; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer;
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: 0.15s ease;
-    }
-    button.btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(96,165,250,0.35); }
-    button.btn:active { transform: scale(0.98); }
-    button.btn.primary {
-      background: linear-gradient(135deg, #2563eb, #0891b2);
-      border: none; box-shadow: 0 6px 18px rgba(37,99,235,0.35);
-    }
-    button.btn:disabled { opacity: 0.5; cursor: wait; }
-
-    /* Next class hero */
-    .hero {
-      background: var(--today);
-      border-radius: 22px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
-      position: relative; overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute; right: -40px; top: -40px;
-      width: 160px; height: 160px; border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-    }
-    .hero .label {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; opacity: 0.9; margin-bottom: 6px;
-    }
-    .hero h2 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; max-width: 90%; }
-    .hero .meta {
-      display: flex; flex-wrap: wrap; gap: 8px 14px;
-      margin-top: 12px; font-size: 0.9rem; font-weight: 500;
-    }
-    .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
-    .countdown {
-      margin-top: 14px; display: inline-flex; gap: 8px; flex-wrap: wrap;
-      background: rgba(0,0,0,0.18); border-radius: 14px; padding: 10px 12px;
-      font-weight: 700; font-size: 0.92rem;
-    }
-    .hero.done {
-      background: linear-gradient(135deg, #065f46, #0f766e);
-    }
-    .hero.empty {
-      background: linear-gradient(135deg, #1e293b, #334155);
-    }
-
-    /* Stats */
-    .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-      margin-bottom: 18px;
-    }
-    @media (max-width: 560px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
-    }
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px 14px;
-    }
-    .stat .n { font-size: 1.35rem; font-weight: 800; color: var(--blue2); }
-    .stat .t { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-
-    /* Week nav */
-    .week-bar {
-      display: flex; align-items: center; gap: 8px;
+    /* Focus card – buổi quan trọng nhất */
+    .focus {
+      border-radius: 18px;
+      padding: 18px;
       margin-bottom: 14px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 8px;
+      background: linear-gradient(145deg, #1d4ed8, #0ea5e9);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.28);
     }
-    .week-bar .week-label {
-      flex: 1; text-align: center; font-weight: 700; font-size: 0.92rem;
+    .focus.ongoing { background: linear-gradient(145deg, #b45309, #ea580c); }
+    .focus.ending { background: linear-gradient(145deg, #c2410c, #dc2626); }
+    .focus.done { background: linear-gradient(145deg, #0f766e, #059669); }
+    .focus.empty { background: var(--card); border: 1px solid var(--line); }
+    .focus .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.92;
+      margin-bottom: 6px;
     }
-    .week-bar button {
-      width: 40px; height: 40px; border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--text); font-size: 1.1rem; cursor: pointer;
-    }
-    .week-bar button:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* Tabs */
-    .tabs {
-      display: flex; gap: 6px; margin-bottom: 14px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px; padding: 5px;
-    }
-    .tabs button {
-      flex: 1; border: none; background: transparent;
-      color: var(--muted); font: inherit; font-weight: 600; font-size: 0.85rem;
-      padding: 10px 8px; border-radius: 10px; cursor: pointer;
-    }
-    .tabs button.active {
-      background: rgba(59,130,246,0.2);
-      color: var(--blue2);
-    }
-
-    /* Day card */
-    .day-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    .focus h2 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.35;
       margin-bottom: 12px;
-      overflow: hidden;
-      transition: border-color 0.15s;
     }
-    .day-card.is-today {
-      border-color: rgba(96,165,250,0.55);
-      box-shadow: 0 0 0 1px rgba(59,130,246,0.25), var(--shadow);
+    .focus .rows {
+      display: grid;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
-    .day-card.is-past { opacity: 0.78; }
-    .day-card.is-done { opacity: 0.65; }
+    .focus .rows div {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .focus .hint {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.82rem;
+      opacity: 0.95;
+    }
 
-    .day-head {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 14px 16px;
-      cursor: pointer;
-      user-select: none;
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
     }
-    .day-date-badge {
-      min-width: 56px; text-align: center;
-      background: var(--card2);
-      border-radius: 14px;
-      padding: 8px 6px;
-      border: 1px solid var(--border);
-    }
-    .day-card.is-today .day-date-badge {
-      background: rgba(37,99,235,0.35);
-      border-color: rgba(96,165,250,0.4);
-    }
-    .day-date-badge .d { font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
-    .day-date-badge .m { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
-    .day-info { flex: 1; min-width: 0; }
-    .day-info .wd {
-      font-size: 0.75rem; font-weight: 700; color: var(--cyan);
-      text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .day-info h3 {
-      font-size: 0.98rem; font-weight: 700; margin: 2px 0 8px;
-      letter-spacing: -0.01em;
-    }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .chip {
-      font-size: 0.72rem; font-weight: 600;
-      padding: 4px 8px; border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
-    .chip.blue { color: var(--blue2); background: rgba(59,130,246,0.12); }
-    .chip.green { color: var(--green); background: rgba(52,211,153,0.12); }
-    .chip.amber { color: var(--amber); background: rgba(251,191,36,0.12); }
-    .chip.rose { color: var(--rose); background: rgba(251,113,133,0.12); }
-
-    .day-actions {
-      display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
-    }
-    .chev {
-      width: 32px; height: 32px; border-radius: 10px;
-      display: grid; place-items: center;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted); transition: transform 0.2s;
-    }
-    .day-card.open .chev { transform: rotate(180deg); }
-
-    .done-btn {
-      border: 1px solid var(--border);
+    .filters button {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
       background: transparent;
       color: var(--muted);
-      border-radius: 10px;
-      padding: 6px 8px;
-      font: inherit; font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
-      white-space: nowrap;
     }
-    .done-btn.on {
-      color: var(--green);
-      border-color: rgba(52,211,153,0.4);
-      background: rgba(52,211,153,0.12);
+    .filters button.on {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.35);
+      color: var(--blue);
     }
 
-    .day-body {
-      display: none;
-      border-top: 1px solid var(--border);
-      padding: 4px 12px 14px;
-      background: rgba(0,0,0,0.15);
-    }
-    .day-card.open .day-body { display: block; }
-
-    .lesson {
-      border: 1px solid var(--border);
-      background: var(--card2);
-      border-radius: 14px;
-      margin-top: 10px;
+    /* Class list */
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
       overflow: hidden;
     }
-    .lesson summary {
-      list-style: none; cursor: pointer;
-      padding: 12px 14px;
-      font-weight: 600; font-size: 0.9rem;
-      display: flex; gap: 10px; align-items: flex-start;
+    .card.today { border-color: rgba(56, 189, 248, 0.45); }
+    .card.past { opacity: 0.55; }
+    .card-main {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      padding: 14px;
+      cursor: pointer;
     }
-    .lesson summary::-webkit-details-marker { display: none; }
-    .lesson .num {
-      min-width: 26px; height: 26px; border-radius: 8px;
-      background: rgba(59,130,246,0.2); color: var(--blue2);
-      display: grid; place-items: center;
-      font-size: 0.75rem; font-weight: 800; flex-shrink: 0;
+    .datebox {
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 8px 4px;
+      border: 1px solid var(--line);
     }
-    .lesson .mod {
-      display: block; font-size: 0.72rem; color: var(--muted);
-      font-weight: 500; margin-top: 2px;
+    .card.today .datebox {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: rgba(56, 189, 248, 0.3);
     }
-    .lesson .content {
-      padding: 0 14px 14px 50px;
-      color: var(--muted); font-size: 0.85rem;
+    .datebox .d { font-size: 1.2rem; font-weight: 700; line-height: 1.1; }
+    .datebox .m { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+    .body .wd {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 2px;
+    }
+    .body .wd .badge {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--blue);
+    }
+    .body .wd .badge.live {
+      background: rgba(251, 113, 133, 0.18);
+      color: var(--rose);
+    }
+    .body h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .meta span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+    .meta span.hi { color: var(--blue); border-color: rgba(56,189,248,0.25); }
+
+    .detail {
+      display: none;
+      border-top: 1px solid var(--line);
+      padding: 10px 14px 14px;
+      background: rgba(0,0,0,0.18);
+    }
+    .card.open .detail { display: block; }
+    .detail .item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.85rem;
+    }
+    .detail .item:last-child { border-bottom: none; }
+    .detail .item b {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .detail .item p {
+      color: var(--muted);
+      font-size: 0.8rem;
       white-space: pre-wrap;
     }
-
-    .empty-state {
-      text-align: center; padding: 40px 16px; color: var(--muted);
-      background: var(--card); border: 1px dashed var(--border);
-      border-radius: var(--radius);
+    .detail .toggle-more {
+      margin-top: 6px;
+      border: none;
+      background: none;
+      color: var(--blue);
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .module-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin-bottom: 10px;
-      padding: 14px 16px;
+    .empty {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      font-size: 0.9rem;
     }
-    .module-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
-    .module-card .count { color: var(--muted); font-size: 0.8rem; margin-bottom: 8px; }
-    .module-card details { margin-top: 6px; }
-    .module-card summary {
-      cursor: pointer; color: var(--blue2); font-weight: 600; font-size: 0.85rem;
-    }
-    .module-card ul {
-      margin: 8px 0 0 18px; color: var(--muted); font-size: 0.85rem;
-    }
-    .module-card li { margin: 4px 0; }
 
-    .toast {
-      position: fixed; left: 50%; bottom: calc(76px + var(--safe-b));
-      transform: translateX(-50%) translateY(20px);
-      background: #1e293b; color: white;
-      border: 1px solid var(--border);
-      padding: 10px 16px; border-radius: 12px;
-      font-size: 0.85rem; font-weight: 600;
-      opacity: 0; pointer-events: none;
-      transition: 0.25s ease; z-index: 50;
-      max-width: 90%;
+    .foot {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.5;
     }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* Bottom nav */
-    nav.bottom {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      background: rgba(7, 17, 31, 0.92);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid var(--border);
-      padding: 8px 12px calc(8px + var(--safe-b));
-      display: flex; justify-content: center; z-index: 40;
-    }
-    nav.bottom .inner {
-      width: 100%; max-width: 920px;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
-    }
-    nav.bottom button {
-      border: none; background: transparent; color: var(--muted);
-      font: inherit; font-size: 0.72rem; font-weight: 600;
-      padding: 8px 4px; border-radius: 12px; cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; gap: 3px;
-    }
-    nav.bottom button .ico { font-size: 1.15rem; line-height: 1; }
-    nav.bottom button.active { color: var(--blue2); background: rgba(59,130,246,0.12); }
-
-    footer.note {
-      text-align: center; color: var(--muted); font-size: 0.75rem;
-      padding: 18px 8px 8px;
-    }
-    footer.note a { color: var(--blue2); text-decoration: none; }
-
-    .progress-bar {
-      height: 8px; background: rgba(255,255,255,0.08);
-      border-radius: 999px; overflow: hidden; margin-top: 8px;
-    }
-    .progress-bar > i {
-      display: block; height: 100%;
-      background: linear-gradient(90deg, #2563eb, #22d3ee);
-      border-radius: 999px; width: 0%; transition: width 0.35s ease;
-    }
+    .foot a { color: var(--blue); text-decoration: none; }
 
     .loading {
-      text-align: center; padding: 60px 20px; color: var(--muted);
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
     }
-    .spinner {
-      width: 36px; height: 36px; margin: 0 auto 12px;
-      border: 3px solid rgba(96,165,250,0.2);
-      border-top-color: var(--blue2);
+    .spin {
+      width: 32px; height: 32px;
+      margin: 0 auto 12px;
+      border: 3px solid rgba(56,189,248,0.2);
+      border-top-color: var(--blue);
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      animation: sp 0.7s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes sp { to { transform: rotate(360deg); } }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(20px + var(--safe));
+      transform: translateX(-50%) translateY(12px);
+      background: #1e293b;
+      border: 1px solid var(--line);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s;
+      z-index: 20;
+      max-width: 90%;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
-  <div class="app" id="app">
-    <div class="loading" id="boot">
-      <div class="spinner"></div>
-      Đang tải lịch học...
-    </div>
+  <div class="wrap" id="app">
+    <div class="loading"><div class="spin"></div>Đang tải lịch…</div>
   </div>
-
   <div class="toast" id="toast"></div>
 
   <script>
-    const STORAGE_KEY = "sic2026_attendance_v1";
     const SHEET_CSV =
       "https://docs.google.com/spreadsheets/d/1nnYhUeWdgkSE8wZvagctTT28VT7nyTUd9e3gDi8m-4s/gviz/tq?tqx=out:csv&gid=1271431527";
 
-    const WD_FULL = ["Chủ nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7"];
-    const MONTHS = ["","Th1","Th2","Th3","Th4","Th5","Th6","Th7","Th8","Th9","Th10","Th11","Th12"];
-
     let state = {
       data: null,
-      view: "week", // week | all | outline
-      weekIndex: 0,
-      attendance: loadAttendance(),
+      filter: "upcoming", // upcoming | all
+      open: {}, // date -> bool
     };
-
-    function loadAttendance() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
-      catch { return {}; }
-    }
-    function saveAttendance() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.attendance));
-    }
 
     function toast(msg) {
       const el = document.getElementById("toast");
       el.textContent = msg;
       el.classList.add("show");
       clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove("show"), 2200);
+      toast._t = setTimeout(() => el.classList.remove("show"), 2000);
+    }
+
+    function esc(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
     function parseDateVN(s) {
@@ -434,66 +343,71 @@
       return isNaN(d) ? null : d;
     }
 
-    function todayStart() {
-      const n = new Date();
-      return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    function parseHm(part, defH, defM) {
+      const m = String(part || "").match(/(\d{1,2})[h:](\d{2})/i);
+      return m ? { h: +m[1], m: +m[2] } : { h: defH, m: defM };
     }
 
-    function isSameDay(a, b) {
-      return a && b && a.getFullYear() === b.getFullYear() &&
-        a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-    }
-
-    function parseTimeRange(t) {
-      // "18h00-21h00" or "18:00-21:00"
-      const m = String(t || "").match(/(\d{1,2})[h:](\d{2})/i);
-      if (!m) return { h: 18, m: 0 };
-      return { h: +m[1], m: +m[2] };
-    }
-
-    function sessionStart(day) {
+    function bounds(day) {
       const d = parseDateVN(day.date_iso || day.date);
       if (!d) return null;
-      const tm = parseTimeRange(day.time);
-      return new Date(d.getFullYear(), d.getMonth(), d.getDate(), tm.h, tm.m, 0);
+      const t = String(day.time || "18h00-21h00");
+      const [a, b] = t.split("-");
+      const s = parseHm(a, 18, 0);
+      const e = parseHm(b, 21, 0);
+      const start = new Date(d.getFullYear(), d.getMonth(), d.getDate(), s.h, s.m);
+      const end = new Date(d.getFullYear(), d.getMonth(), d.getDate(), e.h, e.m);
+      return { start, end };
     }
 
-    function sessionEnd(day) {
-      const d = parseDateVN(day.date_iso || day.date);
-      if (!d) return null;
-      const m = String(day.time || "").match(/-(\d{1,2})[h:](\d{2})/i);
-      const h = m ? +m[1] : 21;
-      const mi = m ? +m[2] : 0;
-      return new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, mi, 0);
-    }
-
-    function formatCountdown(ms) {
-      if (ms <= 0) return "Đang diễn ra / đã tới giờ";
-      const s = Math.floor(ms / 1000);
-      const d = Math.floor(s / 86400);
-      const h = Math.floor((s % 86400) / 3600);
-      const m = Math.floor((s % 3600) / 60);
-      const parts = [];
-      if (d) parts.push(`${d} ngày`);
-      if (h || d) parts.push(`${h} giờ`);
-      parts.push(`${m} phút`);
-      return parts.join(" ");
-    }
-
-    function getNextClass(days) {
+    function classFocus(days) {
       const now = new Date();
-      const upcoming = days
-        .map(d => ({ day: d, start: sessionStart(d), end: sessionEnd(d) }))
-        .filter(x => x.start)
-        .sort((a, b) => a.start - b.start);
+      const items = (days || [])
+        .map((day) => ({ day, b: bounds(day) }))
+        .filter((x) => x.b)
+        .sort((a, b) => a.b.start - b.b.start);
 
-      for (const x of upcoming) {
-        if (x.end >= now) return x;
+      for (const it of items) {
+        if (it.b.start <= now && now < it.b.end) {
+          const minsLeft = Math.max(0, Math.round((it.b.end - now) / 60000));
+          const idx = items.indexOf(it);
+          return {
+            status: minsLeft <= 30 ? "ending" : "ongoing",
+            day: it.day,
+            minsLeft,
+            next: items[idx + 1]?.day || null,
+          };
+        }
       }
-      return null;
+      for (const it of items) {
+        if (it.b.start > now) {
+          const minsUntil = Math.round((it.b.start - now) / 60000);
+          return { status: "upcoming", day: it.day, minsUntil, next: null };
+        }
+      }
+      return { status: "none", day: null, next: null };
     }
 
-    // ---------- CSV live parse (fallback / refresh) ----------
+    function isToday(day) {
+      const d = parseDateVN(day.date_iso || day.date);
+      if (!d) return false;
+      const n = new Date();
+      return d.getFullYear() === n.getFullYear() &&
+        d.getMonth() === n.getMonth() &&
+        d.getDate() === n.getDate();
+    }
+
+    function isPast(day) {
+      const b = bounds(day);
+      if (!b) return false;
+      return b.end < new Date();
+    }
+
+    function isUpcomingOrToday(day) {
+      return !isPast(day);
+    }
+
+    // ── CSV (live) ──
     function parseCsv(text) {
       const rows = [];
       let row = [], cell = "", i = 0, inQ = false;
@@ -518,10 +432,10 @@
       return rows;
     }
 
-    function buildDataFromCsv(text) {
+    function buildFromCsv(text) {
       const rows = parseCsv(text);
       if (!rows.length) throw new Error("CSV rỗng");
-      const dataRows = rows.slice(1).map(r => {
+      const dataRows = rows.slice(1).map((r) => {
         while (r.length < 10) r.push("");
         return {
           so_tiet: (r[0] || "").trim(),
@@ -543,9 +457,7 @@
         if (r.chu_de_ngay && r.chu_de_ngay !== curTopic) {
           curDate = r.date || "";
           curTopic = r.chu_de_ngay;
-        } else if (r.date) {
-          curDate = r.date;
-        }
+        } else if (r.date) curDate = r.date;
         if (r.lecturer) curLec = r.lecturer;
         if (r.time) curTime = r.time;
         if (r.classroom) curRoom = r.classroom;
@@ -554,511 +466,303 @@
         if (!r.chu_de_tiet && !r.noi_dung && !r.so_tiet) continue;
         if (r.so_tiet && !r.chu_de_tiet && !r.noi_dung) continue;
         lessons.push({
-          so_tiet: r.so_tiet,
           day_topic: curTopic,
           lesson_topic: r.chu_de_tiet,
           content: r.noi_dung,
-          material: curMat,
-          type: curType,
+          so_tiet: r.so_tiet,
           date: curDate,
           lecturer: curDate ? curLec : "",
           time: curDate ? curTime : "",
           classroom: curDate ? curRoom : "",
+          type: curType,
+          material: curMat,
           scheduled: !!curDate,
         });
       }
 
-      const dayMap = new Map();
+      const map = new Map();
       for (const les of lessons) {
         if (!les.scheduled) continue;
-        if (!dayMap.has(les.date)) {
-          dayMap.set(les.date, {
+        if (!map.has(les.date)) {
+          map.set(les.date, {
             date: les.date,
             date_iso: null,
             weekday: null,
             day_topic: les.day_topic,
-            topics: [],
             lecturer: les.lecturer,
             time: les.time || "18h00-21h00",
             classroom: les.classroom,
-            type: les.type || "Offline class",
+            type: les.type || "Offline",
             material: les.material,
             lessons: [],
           });
         }
-        const day = dayMap.get(les.date);
-        for (const f of ["lecturer", "time", "classroom", "type", "material"]) {
+        const day = map.get(les.date);
+        for (const f of ["lecturer", "time", "classroom", "type", "material", "day_topic"]) {
           if (les[f]) day[f] = les[f];
-        }
-        if (les.day_topic && !day.topics.includes(les.day_topic)) {
-          day.topics.push(les.day_topic);
-          day.day_topic = day.topics.length > 1 ? day.topics.join(" · ") : day.topics[0];
         }
         if (les.lesson_topic || les.content) {
           day.lessons.push({
             so_tiet: les.so_tiet,
             title: les.lesson_topic,
             content: les.content,
-            module: les.day_topic,
           });
         }
       }
 
-      const days = [...dayMap.values()].map(day => {
+      const WD = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+      const days = [...map.values()].map((day) => {
         const dt = parseDateVN(day.date);
         if (dt) {
-          day.date_iso = `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}-${String(dt.getDate()).padStart(2,"0")}`;
-          day.weekday = ["Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7","Chủ nhật"][(dt.getDay()+6)%7];
+          day.date_iso = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+          day.weekday = WD[dt.getDay()];
           day.sort_key = day.date_iso;
         } else day.sort_key = day.date;
         return day;
-      }).sort((a,b) => a.sort_key.localeCompare(b.sort_key));
-
-      // weeks
-      const weekMap = new Map();
-      for (const day of days) {
-        if (!day.date_iso) continue;
-        const dt = new Date(day.date_iso + "T12:00:00");
-        const tmp = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
-        const dayNum = tmp.getUTCDay() || 7;
-        tmp.setUTCDate(tmp.getUTCDate() + 4 - dayNum);
-        const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1));
-        const weekNo = Math.ceil((((tmp - yearStart) / 86400000) + 1) / 7);
-        const key = `${tmp.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`;
-        if (!weekMap.has(key)) {
-          // monday
-          const mon = new Date(dt);
-          const dow = (mon.getDay() + 6) % 7;
-          mon.setDate(mon.getDate() - dow);
-          const sun = new Date(mon); sun.setDate(sun.getDate() + 6);
-          const label = `Tuần ${weekNo}: ${String(mon.getDate()).padStart(2,"0")}/${String(mon.getMonth()+1).padStart(2,"0")} – ${String(sun.getDate()).padStart(2,"0")}/${String(sun.getMonth()+1).padStart(2,"0")}/${sun.getFullYear()}`;
-          weekMap.set(key, { id: key, label, days: [] });
-        }
-        weekMap.get(key).days.push(day);
-      }
-
-      const unMap = new Map();
-      for (const les of lessons) {
-        if (les.scheduled) continue;
-        const key = les.day_topic || "Khác";
-        if (!unMap.has(key)) unMap.set(key, { day_topic: key, material: les.material, type: les.type, lessons: [] });
-        const mod = unMap.get(key);
-        if (les.material) mod.material = les.material;
-        if (les.lesson_topic || les.content) {
-          mod.lessons.push({ so_tiet: les.so_tiet, title: les.lesson_topic, content: les.content });
-        }
-      }
+      }).sort((a, b) => a.sort_key.localeCompare(b.sort_key));
 
       return {
-        course: "SIC2026 ICTU – Bản dẫn cơ bản No1",
+        course: "SIC2026 ICTU",
         source: "https://docs.google.com/spreadsheets/d/1nnYhUeWdgkSE8wZvagctTT28VT7nyTUd9e3gDi8m-4s/edit#gid=1271431527",
-        updated_at: new Date().toISOString().slice(0, 19),
+        updated_at: new Date().toISOString(),
         days,
-        weeks: [...weekMap.values()],
-        unscheduled: [...unMap.values()],
-        stats: {
-          total_days: days.length,
-          total_lessons: days.reduce((s,d)=>s+d.lessons.length,0),
-          total_weeks: weekMap.size,
-          unscheduled_modules: unMap.size,
-          unscheduled_lessons: [...unMap.values()].reduce((s,m)=>s+m.lessons.length,0),
-        },
       };
     }
 
     async function loadData(forceLive = false) {
       if (forceLive) {
-        try {
-          const res = await fetch(SHEET_CSV + "&_=" + Date.now(), { cache: "no-store" });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const text = await res.text();
-          if (!text || text.includes("<!DOCTYPE")) throw new Error("Không đọc được sheet");
-          return buildDataFromCsv(text);
-        } catch (e) {
-          console.warn("Live fetch failed", e);
-          throw e;
-        }
+        const res = await fetch(SHEET_CSV + "&_=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const text = await res.text();
+        if (!text || text.includes("<!DOCTYPE")) throw new Error("Sheet lỗi");
+        return buildFromCsv(text);
       }
       try {
         const res = await fetch("schedule.json?_=" + Date.now());
         if (res.ok) return await res.json();
       } catch (_) {}
-      // try live as fallback when no local json (e.g. file:// may fail)
-      try {
-        const res = await fetch(SHEET_CSV + "&_=" + Date.now());
-        if (res.ok) {
-          const text = await res.text();
-          return buildDataFromCsv(text);
-        }
-      } catch (_) {}
-      throw new Error("Không tải được lịch học. Hãy chạy start.bat hoặc mở qua server local.");
+      const res = await fetch(SHEET_CSV + "&_=" + Date.now());
+      if (!res.ok) throw new Error("Không tải được lịch");
+      return buildFromCsv(await res.text());
     }
 
-    // ---------- Render ----------
-    function esc(s) {
-      return String(s ?? "")
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    }
-
-    function doneCount() {
-      const days = state.data?.days || [];
-      return days.filter(d => state.attendance[d.date]).length;
-    }
-
-    function renderHero() {
-      const days = state.data.days || [];
-      const next = getNextClass(days);
-      if (!next) {
+    // ── UI ──
+    function focusHtml(focus) {
+      if (!focus || focus.status === "none" || !focus.day) {
         return `
-          <section class="hero empty">
-            <div class="label">Lịch học</div>
-            <h2>Chưa có buổi học sắp tới</h2>
-            <div class="meta"><span>Kiểm tra outline hoặc chờ cập nhật sheet</span></div>
+          <section class="focus empty">
+            <div class="tag">Lịch học</div>
+            <h2>Không còn buổi sắp tới</h2>
+            <div class="rows"><div>Chờ cập nhật lịch Chủ nhật</div></div>
           </section>`;
       }
-      const { day, start, end } = next;
-      const now = new Date();
-      const ongoing = start <= now && end >= now;
-      const ms = start - now;
+
+      const d = focus.day;
+      let cls = "";
+      let tag = "Buổi sắp tới";
+      let hint = "";
+
+      if (focus.status === "ending") {
+        cls = "ending";
+        tag = `Đang học · sắp kết thúc (~${focus.minsLeft}p)`;
+        if (focus.next) {
+          hint = `Buổi kế: <b>${esc(focus.next.date)}</b> · ${esc(focus.next.day_topic)}`;
+        }
+      } else if (focus.status === "ongoing") {
+        cls = "ongoing";
+        tag = "Đang trong giờ học";
+        hint = `Kết thúc lúc ${esc((d.time || "").split("-")[1] || "21h00")}`;
+      } else {
+        if (focus.minsUntil != null && focus.minsUntil < 60) {
+          tag = `Sắp học · còn ~${focus.minsUntil} phút`;
+        } else if (focus.minsUntil != null && focus.minsUntil < 24 * 60) {
+          tag = `Buổi sắp tới · còn ~${Math.floor(focus.minsUntil / 60)} giờ`;
+        }
+      }
+
       return `
-        <section class="hero ${ongoing ? "" : ""}">
-          <div class="label">${ongoing ? "Đang học ngay bây giờ" : "Buổi học tiếp theo"}</div>
-          <h2>${esc(day.day_topic)}</h2>
-          <div class="meta">
-            <span>📅 ${esc(day.weekday || "")} · ${esc(day.date)}</span>
-            <span>⏰ ${esc(day.time || "18h00-21h00")}</span>
-            <span>📍 ${esc(day.classroom || "—")}</span>
-            <span>👤 ${esc(day.lecturer || "—")}</span>
+        <section class="focus ${cls}">
+          <div class="tag">${esc(tag)}</div>
+          <h2>${esc(d.day_topic)}</h2>
+          <div class="rows">
+            <div>📅 ${esc(d.weekday)} · ${esc(d.date)}</div>
+            <div>⏰ ${esc(d.time || "18h00-21h00")}</div>
+            <div>📍 Phòng <b>${esc(d.classroom || "—")}</b></div>
+            <div>👤 ${esc(d.lecturer || "—")}</div>
           </div>
-          <div class="countdown" id="countdown">
-            ${ongoing ? "● Đang trong giờ học" : "⏳ Còn " + formatCountdown(ms)}
-          </div>
+          ${hint ? `<div class="hint">${hint}</div>` : ""}
         </section>`;
     }
 
-    function renderStats() {
-      const s = state.data.stats || {};
-      const done = doneCount();
-      const total = s.total_days || 0;
-      const pct = total ? Math.round((done / total) * 100) : 0;
-      return `
-        <div class="stats">
-          <div class="stat"><div class="n">${s.total_days || 0}</div><div class="t">Buổi đã xếp</div></div>
-          <div class="stat"><div class="n">${s.total_weeks || 0}</div><div class="t">Tuần học</div></div>
-          <div class="stat"><div class="n">${done}/${total}</div><div class="t">Đã tham dự</div></div>
-          <div class="stat"><div class="n">${s.unscheduled_modules || 0}</div><div class="t">Module chờ lịch</div></div>
-        </div>
-        <div style="margin:-6px 0 16px">
-          <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--muted);margin-bottom:4px">
-            <span>Tiến độ tham dự</span><span>${pct}%</span>
-          </div>
-          <div class="progress-bar"><i style="width:${pct}%"></i></div>
-        </div>`;
-    }
-
-    function dayStatus(day) {
-      const d = parseDateVN(day.date_iso || day.date);
-      const t = todayStart();
-      if (!d) return "";
-      if (isSameDay(d, t)) return "is-today";
-      if (d < t) return "is-past";
-      return "";
-    }
-
-    function renderDayCard(day, open = false) {
+    function cardHtml(day) {
       const d = parseDateVN(day.date_iso || day.date);
       const dd = d ? String(d.getDate()).padStart(2, "0") : "—";
-      const mm = d ? MONTHS[d.getMonth() + 1] : "";
-      const st = dayStatus(day);
-      const attended = !!state.attendance[day.date];
+      const mm = d ? `Th${d.getMonth() + 1}` : "";
+      const today = isToday(day);
+      const past = isPast(day);
+      const open = !!state.open[day.date];
       const lessons = day.lessons || [];
-      const lessonHtml = lessons.map((les, idx) => {
-        const n = les.so_tiet || String(idx + 1);
-        const mod = les.module && day.topics && day.topics.length > 1
-          ? `<span class="mod">${esc(les.module)}</span>` : "";
-        const content = les.content
-          ? `<div class="content">${esc(les.content)}</div>` : "";
-        return `
-          <details class="lesson">
-            <summary>
-              <span class="num">${esc(n)}</span>
-              <span>${esc(les.title || "Nội dung")}${mod}</span>
-            </summary>
-            ${content || `<div class="content">Chưa có nội dung chi tiết.</div>`}
-          </details>`;
-      }).join("");
+
+      let badge = "";
+      const now = new Date();
+      const b = bounds(day);
+      if (b && b.start <= now && now < b.end) {
+        badge = `<span class="badge live">Đang học</span>`;
+      } else if (today && !past) {
+        badge = `<span class="badge">Hôm nay</span>`;
+      }
+
+      const lessonsHtml = lessons
+        .map((les, i) => {
+          const n = les.so_tiet || String(i + 1);
+          const content = les.content
+            ? `<p class="c" hidden>${esc(les.content)}</p><button type="button" class="toggle-more" data-more>Xem nội dung</button>`
+            : "";
+          return `
+            <div class="item">
+              <b>${esc(n)}. ${esc(les.title || "Nội dung")}</b>
+              ${content}
+            </div>`;
+        })
+        .join("");
 
       return `
-        <article class="day-card ${st} ${attended ? "is-done" : ""} ${open ? "open" : ""}" data-date="${esc(day.date)}">
-          <div class="day-head" data-toggle="${esc(day.date)}">
-            <div class="day-date-badge">
+        <article class="card ${today ? "today" : ""} ${past ? "past" : ""} ${open ? "open" : ""}" data-date="${esc(day.date)}">
+          <div class="card-main" data-toggle="${esc(day.date)}">
+            <div class="datebox">
               <div class="d">${dd}</div>
               <div class="m">${mm}</div>
             </div>
-            <div class="day-info">
-              <div class="wd">${esc(day.weekday || "")}${st === "is-today" ? " · Hôm nay" : ""}</div>
+            <div class="body">
+              <div class="wd">${esc(day.weekday || "")}${badge}</div>
               <h3>${esc(day.day_topic)}</h3>
-              <div class="chips">
-                <span class="chip blue">⏰ ${esc(day.time || "18h00-21h00")}</span>
-                <span class="chip">📍 ${esc(day.classroom || "—")}</span>
-                <span class="chip">👤 ${esc(day.lecturer || "—")}</span>
-                <span class="chip amber">${lessons.length} tiết</span>
-                ${day.type ? `<span class="chip green">${esc(day.type)}</span>` : ""}
-                ${attended ? `<span class="chip rose">✓ Đã học</span>` : ""}
+              <div class="meta">
+                <span class="hi">⏰ ${esc(day.time || "18h00-21h00")}</span>
+                <span>📍 ${esc(day.classroom || "—")}</span>
+                <span>${lessons.length} tiết</span>
               </div>
             </div>
-            <div class="day-actions">
-              <div class="chev">▾</div>
-              <button class="done-btn ${attended ? "on" : ""}" data-attend="${esc(day.date)}" title="Đánh dấu đã học">
-                ${attended ? "✓ Đã học" : "○ Điểm danh"}
-              </button>
-            </div>
           </div>
-          <div class="day-body">
-            ${day.material ? `<div style="padding:10px 4px 0;font-size:0.8rem;color:var(--muted)">📎 ${esc(day.material)}</div>` : ""}
-            ${lessonHtml || `<div class="empty-state">Không có tiết con</div>`}
+          <div class="detail">
+            <div class="meta" style="margin-bottom:8px">
+              <span>👤 ${esc(day.lecturer || "—")}</span>
+              <span>${esc(day.type || "Offline")}</span>
+            </div>
+            ${lessonsHtml || `<div class="item"><b>Chưa có tiết chi tiết</b></div>`}
           </div>
         </article>`;
-    }
-
-    function currentWeekDays() {
-      const weeks = state.data.weeks || [];
-      if (!weeks.length) return state.data.days || [];
-      const w = weeks[Math.min(state.weekIndex, weeks.length - 1)];
-      return w?.days || [];
-    }
-
-    function renderWeekBar() {
-      const weeks = state.data.weeks || [];
-      if (!weeks.length) return "";
-      const w = weeks[state.weekIndex] || weeks[0];
-      return `
-        <div class="week-bar">
-          <button id="prevWeek" ${state.weekIndex <= 0 ? "disabled" : ""} aria-label="Tuần trước">‹</button>
-          <div class="week-label">${esc(w.label)} · ${w.days.length} buổi</div>
-          <button id="nextWeek" ${state.weekIndex >= weeks.length - 1 ? "disabled" : ""} aria-label="Tuần sau">›</button>
-        </div>`;
-    }
-
-    function pickDefaultWeek() {
-      const weeks = state.data.weeks || [];
-      if (!weeks.length) return 0;
-      const t = todayStart();
-      // prefer week containing today or next class
-      for (let i = 0; i < weeks.length; i++) {
-        for (const day of weeks[i].days) {
-          const d = parseDateVN(day.date_iso || day.date);
-          if (!d) continue;
-          const dow = (d.getDay() + 6) % 7;
-          const mon = new Date(d); mon.setDate(d.getDate() - dow);
-          const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
-          if (t >= mon && t <= sun) return i;
-        }
-      }
-      // else week of next class
-      const next = getNextClass(state.data.days || []);
-      if (next) {
-        for (let i = 0; i < weeks.length; i++) {
-          if (weeks[i].days.some(d => d.date === next.day.date)) return i;
-        }
-      }
-      return 0;
-    }
-
-    function renderOutline() {
-      const mods = state.data.unscheduled || [];
-      if (!mods.length) {
-        return `<div class="empty-state">Toàn bộ module đã được xếp lịch 🎉</div>`;
-      }
-      return `
-        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px">
-          Các module dưới đây có trong outline khóa học nhưng <strong style="color:var(--amber)">chưa có ngày học</strong> trên Google Sheet.
-          Khi sheet được cập nhật, bấm <strong>Đồng bộ</strong> để làm mới.
-        </p>
-        ${mods.map(m => `
-          <div class="module-card">
-            <h3>${esc(m.day_topic)}</h3>
-            <div class="count">${(m.lessons||[]).length} tiết · ${esc(m.material || "Slide bài giảng Samsung")}</div>
-            <details>
-              <summary>Xem các tiết</summary>
-              <ul>
-                ${(m.lessons||[]).map(l => `<li><strong>${esc(l.title || "")}</strong>${l.content ? `<div style="white-space:pre-wrap;margin-top:2px">${esc(l.content)}</div>` : ""}</li>`).join("")}
-              </ul>
-            </details>
-          </div>
-        `).join("")}`;
     }
 
     function render() {
       const app = document.getElementById("app");
       if (!state.data) {
-        app.innerHTML = `<div class="loading"><div class="spinner"></div>Đang tải lịch học...</div>`;
+        app.innerHTML = `<div class="loading"><div class="spin"></div>Đang tải lịch…</div>`;
         return;
       }
 
+      const days = state.data.days || [];
+      const focus = classFocus(days);
+      const list =
+        state.filter === "upcoming"
+          ? days.filter(isUpcomingOrToday)
+          : days;
+
       const updated = state.data.updated_at
-        ? new Date(state.data.updated_at).toLocaleString("vi-VN")
+        ? new Date(state.data.updated_at).toLocaleString("vi-VN", {
+            day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit",
+          })
         : "—";
 
-      let body = "";
-      if (state.view === "week") {
-        const days = currentWeekDays();
-        body = renderWeekBar() + (
-          days.length
-            ? days.map(d => renderDayCard(d, dayStatus(d) === "is-today")).join("")
-            : `<div class="empty-state">Tuần này không có buổi học</div>`
-        );
-      } else if (state.view === "all") {
-        const days = state.data.days || [];
-        body = days.length
-          ? days.map(d => renderDayCard(d, dayStatus(d) === "is-today")).join("")
-          : `<div class="empty-state">Chưa có buổi nào được xếp lịch</div>`;
-      } else {
-        body = renderOutline();
-      }
-
       app.innerHTML = `
-        <header class="app-header">
-          <div class="brand">
-            <div class="logo">SIC</div>
-            <div>
-              <h1>${esc(state.data.course || "Lịch học SIC2026")}</h1>
-              <p>Đồng bộ từ Google Sheet · ${esc(updated)}</p>
-            </div>
+        <header class="top">
+          <div>
+            <h1>Lịch học SIC</h1>
+            <div class="sub">${esc(state.data.course || "SIC2026")} · ${esc(updated)}</div>
           </div>
-          <div class="header-actions">
-            <button class="btn" id="btnRefresh" title="Tải lại từ Google Sheet">↻ Đồng bộ</button>
-            <a class="btn" href="${esc(state.data.source || "#")}" target="_blank" rel="noopener">Sheet</a>
-          </div>
+          <button class="icon-btn" id="btnRefresh" title="Làm mới từ Sheet" aria-label="Làm mới">↻</button>
         </header>
 
-        ${renderHero()}
-        ${renderStats()}
+        ${focusHtml(focus)}
 
-        <div class="tabs">
-          <button data-view="week" class="${state.view==="week"?"active":""}">Theo tuần</button>
-          <button data-view="all" class="${state.view==="all"?"active":""}">Tất cả buổi</button>
-          <button data-view="outline" class="${state.view==="outline"?"active":""}">Chưa xếp lịch</button>
+        <div class="filters">
+          <button type="button" data-filter="upcoming" class="${state.filter === "upcoming" ? "on" : ""}">Sắp tới</button>
+          <button type="button" data-filter="all" class="${state.filter === "all" ? "on" : ""}">Tất cả</button>
         </div>
 
-        <div id="content">${body}</div>
+        <div class="list">
+          ${
+            list.length
+              ? list.map(cardHtml).join("")
+              : `<div class="empty">Không có buổi trong mục này</div>`
+          }
+        </div>
 
-        <footer class="note">
-          Nguồn: <a href="${esc(state.data.source||"#")}" target="_blank" rel="noopener">Google Sheet Training Schedule</a><br/>
-          Lịch cập nhật <strong>mỗi Chủ nhật</strong>; có thể đổi đến <strong>trước giờ học 2 tiếng</strong>.<br/>
-          Bot Telegram luôn lấy bản mới nhất từ Sheet · Điểm danh lưu trên máy bạn.
+        <footer class="foot">
+          Lịch cập nhật <b>Chủ nhật</b> · có thể đổi đến trước học <b>2 tiếng</b><br/>
+          <a href="${esc(state.data.source || "#")}" target="_blank" rel="noopener">Google Sheet</a>
+          · Bot Telegram: <a href="https://t.me/sicictu_bot" target="_blank" rel="noopener">@sicictu_bot</a>
         </footer>
       `;
 
-      bindEvents();
-      startCountdown();
-    }
+      document.getElementById("btnRefresh")?.addEventListener("click", async () => {
+        const btn = document.getElementById("btnRefresh");
+        btn.disabled = true;
+        try {
+          state.data = await loadData(true);
+          toast("Đã cập nhật lịch");
+          render();
+        } catch (e) {
+          toast("Không tải được Sheet");
+          btn.disabled = false;
+        }
+      });
 
-    function bindEvents() {
-      document.querySelectorAll("[data-view]").forEach(btn => {
+      document.querySelectorAll("[data-filter]").forEach((btn) => {
         btn.addEventListener("click", () => {
-          state.view = btn.getAttribute("data-view");
+          state.filter = btn.getAttribute("data-filter");
           render();
         });
       });
 
-      const prev = document.getElementById("prevWeek");
-      const next = document.getElementById("nextWeek");
-      if (prev) prev.addEventListener("click", () => { state.weekIndex--; render(); });
-      if (next) next.addEventListener("click", () => { state.weekIndex++; render(); });
-
-      document.querySelectorAll("[data-toggle]").forEach(el => {
-        el.addEventListener("click", (e) => {
-          if (e.target.closest("[data-attend]")) return;
-          const card = el.closest(".day-card");
-          card?.classList.toggle("open");
+      document.querySelectorAll("[data-toggle]").forEach((el) => {
+        el.addEventListener("click", () => {
+          const date = el.getAttribute("data-toggle");
+          state.open[date] = !state.open[date];
+          render();
         });
       });
 
-      document.querySelectorAll("[data-attend]").forEach(btn => {
+      document.querySelectorAll("[data-more]").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
-          const date = btn.getAttribute("data-attend");
-          if (state.attendance[date]) {
-            delete state.attendance[date];
-            toast("Đã bỏ điểm danh " + date);
-          } else {
-            state.attendance[date] = true;
-            toast("Đã điểm danh " + date);
-          }
-          saveAttendance();
-          render();
+          const p = btn.parentElement.querySelector(".c");
+          if (!p) return;
+          const show = p.hasAttribute("hidden");
+          if (show) p.removeAttribute("hidden");
+          else p.setAttribute("hidden", "");
+          btn.textContent = show ? "Ẩn nội dung" : "Xem nội dung";
         });
       });
-
-      const ref = document.getElementById("btnRefresh");
-      if (ref) {
-        ref.addEventListener("click", async () => {
-          ref.disabled = true;
-          ref.textContent = "⟳ Đang tải...";
-          try {
-            const data = await loadData(true);
-            state.data = data;
-            state.weekIndex = pickDefaultWeek();
-            toast("Đã đồng bộ lịch mới · " + (data.stats?.total_days || 0) + " buổi");
-            render();
-          } catch (e) {
-            // fallback local
-            try {
-              state.data = await loadData(false);
-              state.weekIndex = pickDefaultWeek();
-              toast("Sheet chặn CORS — dùng bản local. Chạy start.bat để refresh.");
-              render();
-            } catch (e2) {
-              toast("Đồng bộ thất bại: " + e.message);
-              ref.disabled = false;
-              ref.textContent = "↻ Đồng bộ";
-            }
-          }
-        });
-      }
-    }
-
-    let countdownTimer = null;
-    function startCountdown() {
-      clearInterval(countdownTimer);
-      const el = document.getElementById("countdown");
-      if (!el || !state.data) return;
-      const tick = () => {
-        const next = getNextClass(state.data.days || []);
-        if (!next || !el) return;
-        const now = new Date();
-        if (next.start <= now && next.end >= now) {
-          el.textContent = "● Đang trong giờ học";
-        } else if (next.start > now) {
-          el.textContent = "⏳ Còn " + formatCountdown(next.start - now);
-        }
-      };
-      tick();
-      countdownTimer = setInterval(tick, 30000);
     }
 
     async function boot() {
       try {
         state.data = await loadData(false);
-        state.weekIndex = pickDefaultWeek();
         render();
       } catch (e) {
         document.getElementById("app").innerHTML = `
-          <div class="empty-state" style="margin-top:40px">
-            <h2 style="color:var(--text);margin-bottom:8px">Không tải được lịch</h2>
-            <p style="margin-bottom:14px">${esc(e.message)}</p>
-            <p style="margin-bottom:14px">Cách mở app:</p>
-            <ol style="text-align:left;display:inline-block;color:var(--muted)">
-              <li>Double-click <strong style="color:var(--blue2)">start.bat</strong></li>
-              <li>Hoặc chạy: <code>python server.py</code></li>
-            </ol>
+          <div class="empty" style="margin-top:40px">
+            <p style="margin-bottom:8px;color:var(--text);font-weight:600">Không tải được lịch</p>
+            <p>${esc(e.message)}</p>
           </div>`;
       }
     }
 
     boot();
+    // tự làm mới focus mỗi phút (đếm ngược đang học)
+    setInterval(() => {
+      if (state.data) render();
+    }, 60000);
   </script>
 </body>
 </html>
