@@ -63,58 +63,88 @@ Vercel → Project → **Settings** → **Environment Variables** → thêm:
 
 | Name | Value | Environments |
 |------|--------|--------------|
-| `TELEGRAM_BOT_TOKEN` | token từ BotFather | Production, Preview |
-| `TELEGRAM_CHAT_IDS` | chat id của bạn (vd `123456789`) | Production, Preview |
-| `CRON_SECRET` | chuỗi ngẫu nhiên dài (vd password generator) | Production, Preview |
-| `TELEGRAM_WEBHOOK_SECRET` | (tùy chọn) chuỗi khác | Production |
+| `TELEGRAM_BOT_TOKEN` | token từ BotFather | Production |
+| `CRON_SECRET` | chuỗi ngẫu nhiên dài | Production |
+| `TELEGRAM_CHAT_IDS` | (tùy chọn) chat id admin | Production |
+| `PUBLIC_BASE_URL` | `https://sicictu.vercel.app` | Production |
+
+**Không cần** `TELEGRAM_WEBHOOK_SECRET` (dễ làm /start im lặng nếu lệch).
 
 Sau khi lưu → **Deployments** → ⋯ → **Redeploy**.
 
 ---
 
-## Bước 5 – Gắn webhook Telegram (lệnh /today, /next…)
+## Bước 4b – Upstash Redis (bắt buộc nếu muốn nhiều user)
 
-Mở trình duyệt (thay domain & secret):
+Để **mọi người /start đều nhận thông báo**:
+
+1. Vercel project → tab **Storage** (hoặc Marketplace)
+2. **Create Database** → **Upstash Redis** → Connect vào project
+3. Vercel tự thêm:
+   - `UPSTASH_REDIS_REST_URL`
+   - `UPSTASH_REDIS_REST_TOKEN`
+4. **Redeploy**
+
+Cách hoạt động:
+
+- User gõ `/start` → chat id được `SADD` vào Redis  
+- Cron gửi tin cho **tất cả** id trong Redis (+ `TELEGRAM_CHAT_IDS`)  
+- User gõ `/stop` → gỡ khỏi danh sách  
+
+---
+
+## Bước 5 – Gắn webhook (để bot trả lời /start)
+
+Domain của bạn:
 
 ```
-https://YOUR-PROJECT.vercel.app/api/setup-webhook?secret=CRON_SECRET_CUA_BAN
+https://sicictu.vercel.app/api/setup-webhook?secret=CRON_SECRET_CUA_BAN
 ```
 
-Kết quả JSON có `"ok": true` và `bot: "ten_bot"`.
+Cần `"ok": true`, có `bot` và `webhook`: `https://sicictu.vercel.app/api/webhook`.
 
-Kiểm tra sống:
+Kiểm tra webhook:
 
 ```
-https://YOUR-PROJECT.vercel.app/api/health
+https://sicictu.vercel.app/api/setup-webhook?secret=CRON_SECRET&action=info
+```
+
+`url` phải trỏ đúng `/api/webhook`, `pending_update_count` ổn.
+
+Health:
+
+```
+https://sicictu.vercel.app/api/health
+```
+
+- `hasToken: true`
+- `redis: true` (sau khi gắn Upstash)
+- `chatCount` tăng sau mỗi /start
+
+---
+
+## Bước 6 – Mọi người dùng bot
+
+1. Share link bot: `https://t.me/TEN_BOT` (thấy trong JSON setup-webhook)
+2. Mỗi người gõ **`/start`** → đăng ký
+3. Gõ **`/stop`** nếu không muốn nhận nữa
+
+### Test
+
+Telegram: `/test` (chỉ gửi cho chính bạn)
+
+Broadcast thử (gửi tất cả subscriber):
+
+```
+https://sicictu.vercel.app/api/cron?type=test&force=1&secret=CRON_SECRET
 ```
 
 ---
 
-## Bước 6 – Test gửi tin
-
-### Test thủ công (không chờ tới 8h)
+## Bước 7 – Web app
 
 ```
-https://YOUR-PROJECT.vercel.app/api/cron?type=test&force=1&secret=CRON_SECRET_CUA_BAN
-```
-
-Hoặc trên Telegram: `/test`
-
-### Test morning / preclass
-
-```
-.../api/cron?type=morning&secret=...
-.../api/cron?type=preclass&force=1&secret=...
-```
-
----
-
-## Bước 7 – Web app lịch học
-
-Mở:
-
-```
-https://YOUR-PROJECT.vercel.app/
+https://sicictu.vercel.app/
 ```
 
 ---

@@ -23,7 +23,8 @@ const {
   msgWeeklyUpdate,
   msgPreclassCancelled,
 } = require("../lib/messages");
-const { broadcast, getChatIds } = require("../lib/telegram");
+const { broadcast } = require("../lib/telegram");
+const { getAllChatIds } = require("../lib/subscribers");
 
 const PRECLASS_HOURS = 2;
 
@@ -55,12 +56,13 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ ok: false, error: "Unauthorized" });
   }
 
-  const chats = getChatIds();
+  const chats = await getAllChatIds();
   if (!chats.length) {
     return res.status(400).json({
       ok: false,
       error:
-        "TELEGRAM_CHAT_IDS trống. Thêm chat id vào Environment Variables trên Vercel.",
+        "Chưa có ai nhận tin. User gõ /start (cần Upstash Redis) hoặc set TELEGRAM_CHAT_IDS trên Vercel.",
+      hint: "Xem DEPLOY.md – mục Upstash Redis + setup-webhook",
     });
   }
 
