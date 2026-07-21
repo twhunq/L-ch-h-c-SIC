@@ -5,7 +5,13 @@
  *   https://sicictu.vercel.app/api/setup-webhook?secret=...&action=info
  *   https://sicictu.vercel.app/api/setup-webhook?secret=...&action=delete
  */
-const { setWebhook, deleteWebhook, tg, getWebhookInfo } = require("../lib/telegram");
+const {
+  setWebhook,
+  deleteWebhook,
+  tg,
+  getWebhookInfo,
+  setupBotUi,
+} = require("../lib/telegram");
 
 module.exports = async function handler(req, res) {
   const secret = (process.env.CRON_SECRET || "").trim();
@@ -54,6 +60,12 @@ module.exports = async function handler(req, res) {
       : "";
 
     const result = await setWebhook(url, hookSecret || undefined);
+    let ui = null;
+    try {
+      ui = await setupBotUi();
+    } catch (e) {
+      ui = { error: String(e.message || e) };
+    }
     const me = await tg("getMe");
     const info = await getWebhookInfo();
 
@@ -64,12 +76,13 @@ module.exports = async function handler(req, res) {
       bot_link: `https://t.me/${me.username}`,
       webhook: url,
       result,
+      ui,
       info,
       next: [
         "1) Mở bot_link trên Telegram",
-        "2) Gõ /start → đăng ký nhận thông báo",
-        "3) Cần lưu nhiều user: bật Upstash Redis (DEPLOY.md)",
-        "4) Test: /test hoặc /api/cron?type=test&force=1&secret=...",
+        "2) Gõ /start → menu nút bấm + đăng ký thông báo",
+        "3) Dùng nút: Hôm nay · Buổi tới · Tuần · Web",
+        "4) Upstash Redis để lưu nhiều user (DEPLOY.md)",
       ],
     });
   } catch (e) {
