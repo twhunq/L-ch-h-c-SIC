@@ -1,0 +1,9 @@
+.env
+.env.local
+.vercel
+subscribers.json
+sent_notifications.json
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/

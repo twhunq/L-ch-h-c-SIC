@@ -1,0 +1,469 @@
+"Số tiết","Chủ đề theo ngày","Chủ đề theo tiết học","Nội dung cốt lõi","Tài liệu đính kèm","Type of contents","Studying Date","Lecturer","18h00-21h00","Classroom","","","","","","","","","","","","",""
+"1","Cấu trúc ngành OSAT và vị trí của Conventional Packaging (đóng gói truyền thống)","Cấu trúc ngành OSAT","- IDM vs Foundry vs OSAT
+- Cấu trúc ngành OSAT tại Việt Nam
+- Cấu trúc doanh thu (theo loại package)
+- Phạm vi vai trò của kỹ sư quy trình
+- Câu hỏi: ""Vì sao trong OSAT, Yield (tỷ lệ đạt) lại đồng nghĩa với lợi nhuận?""","Slide bài giảng Samsung","Offline class","21/07/2026","ThS. Đỗ Văn Quyền","18h00-21h00","C5.101","","","","","","","","","","","","",""
+"","Cấu trúc ngành OSAT và vị trí của Conventional Packaging (đóng gói truyền thống)","Các nhóm sản phẩm packaging truyền thống","- DIP
+- QFP
+- QFN
+- SOP
+- Đặc điểm cấu trúc của từng loại package","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"2","Cấu trúc ngành OSAT và vị trí của Conventional Packaging (đóng gói truyền thống)","Chuyên sâu về cấu trúc Leadframe","- Thiết kế Die Pad
+- Lead Pitch
+- Đường dẫn tản nhiệt
+- Đường dẫn điện
+- Câu hỏi: ""Khi Lead Pitch (khoảng cách chân dẫn) giảm xuống thì sẽ phát sinh những vấn đề gì?""","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"","Cấu trúc ngành OSAT và vị trí của Conventional Packaging (đóng gói truyền thống)","Dưới góc độ hiệu năng điện","- Chiều dài dây (wire) và điện trở
+- RC Delay
+- Khái niệm Crosstalk
+- Nhận biết giới hạn của packaging truyền thống","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"","Cấu trúc ngành OSAT và vị trí của Conventional Packaging (đóng gói truyền thống)","Dưới góc độ hiệu năng nhiệt","- Thermal Resistance
+- Heat Flow
+- Power Dissipation
+- Case study: ""Nếu chip công suất cao được đóng gói trong DIP thì sẽ phát sinh những vấn đề gì?""","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Mục tiêu và vị trí Back Grinding","1) Tại sao cần làm mỏng Wafer?
+- Cải thiện dẫn nhiệt
+- Giảm độ dày của package
+- Yêu cầu về độ mỏng để gói di động (mobile)
+2) Ưu điểm và rủi ro khi giảm độ dày
+3) Tầm quan trọng của Back Grinding trong OSAT","Slide bài giảng Samsung","Offline class","22/07/2026","ThS. Đỗ Văn Quyền","18h00-21h00","C5.101","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Cơ chế Grinding","1) Cấu trúc Grinding Wheel
+2) Kích thước hạt mài (Abrasive)
+3) Feed Rate
+4) Tốc độ Spindle
+5) Điều kiện làm mát
+- Phân tích mối quan hệ biến số – kết quả:
+- Tăng Feed Rate → khả năng tăng Surface Damage","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Ứng suất wafer và Warpage","1) Cấu trúc sinh ứng suất bên trong
+2) Ứng suất dư
+3) Khái niệm đo Warpage
+4) Tính dễ vỡ của wafer mỏng","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Micro Crack và Surface Damage","1) Nguyên nhân gây Micro Crack
+- Áp lực quá mức
+- Mòn Wheel
+2) Surface Roughness
+3) Cấu trúc làm Crack lan rộng trong Dicing
+4) Liên hệ đến độ tin cậy dài hạn","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Phân tích nhạy cảm theo điều kiện Grinding","- Tăng độ chênh lệch độ dày
+- Tăng Edge Damage
+- Lỗi Tape Lamination","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Back Grinding (mài mặt sau)","Phân tích dựa trên XR","- Phân tích video công đoạn
+- So sánh các trường hợp Grinding Damage
+- Minh họa đường đi của Crack
+- Giải thích cấu trúc lý do tăng khả năng xảy ra Crack trên wafer mỏng","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"2","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Mục tiêu và vị trí công đoạn Dicing","- Tách wafer → từng Die riêng lẻ
+- So sánh Saw Dicing vs Laser Dicing (khái niệm)
+- Ảnh hưởng của Dicing đến Yield của package","Slide bài giảng Samsung","Offline class","23/07/2026","ThS. Đỗ Văn Quyền","18h00-21h00","C5.101","","","","","","","","","","","","",""
+"","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Cấu trúc lưỡi cưa và cơ chế cắt (Saw Blade) ","1) Cấu tạo Blade 
+- Băng kim loại
+- Hạt kim cương
+2) Độ dày Blade 
+3) Grit Size
+4) Spindle Speed
+5) Feed Speed
+- Phân tích mối quan hệ biến số – kết quả:
+- Tăng Feed → khả năng Edge Chipping tăng
+- Lưỡi cưa mòn(Blade) → tăng Burr","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Edge Chipping & Micro Crack","1) Nguyên nhân Edge Chipping
+- Tốc độ cắt quá cao
+- Rung lắc lưỡi cưa
+- Cooling không đủ
+2) Cơ chế hình thành Micro Crack
+3) Liên hệ với Damage do Back Grinding
+4) Đường đi của Crack","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"1","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Die Strength và độ tin cậy","1) Mối quan hệ giữa độ dày Die và độ bền
+2) Tỷ lệ hỏng do Dicing Damage
+3) Khả năng hỏng khi Pick-up Die
+4) Mở rộng Crack trong Thermal Cycling","Slide bài giảng Samsung","Offline class","","","","","","","","","","","","","","","","",""
+"1","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Phân tích độ nhạy biến số công đoạn","1) Phân tích các trường hợp
+- Case A: Tăng Chipping
+- Case B: Burr phát sinh
+- Case C: Tăng Die Edge Crack
+2) Chi tiết từng case
+- Hạng mục kiểm tra lần 1
+- Phân tích nguyên nhân
+- Hướng điều chỉnh công đoạn","Slide bài giảng Samsung","Offline class","28/07/2026","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích chuyên sâu quy trình Dicing (cắt chip)","Thực hành mô phỏng sự cố liên kết XR","1) Chủ đề XR
+- Nội dung hậu công đoạn 2
+2) Hoạt động sau XR
+- Hiển thị khu vực có khả năng xảy ra Chipping
+- Minh họa đường đi dẫn đến giảm Die Strength
+- Liên kết giữa lỗi Dicing → lỗi Die Attach","Slide bài giảng Samsung","Offline class","28/07/2026","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Die Attach (gắn chip)","Tái cấu trúc vị trí công đoạn Die Attach","1) Kiểm tra trạng thái chuẩn bị Die
+- Edge Damage
+- Die Thickness
+- Surface Contamination
+2) Kiểm tra trạng thái chuẩn bị Leadframe
+3) Ảnh hưởng của lỗi Die Attach đến các công đoạn tiếp theo","Slide bài giảng Samsung","Offline class","28/07/2026","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Die Attach (gắn chip)","So sánh phương pháp Die Attach","1) Epoxy Die Attach
+- Dựa trên quá trình đóng rắn nhiệt (Thermal Cure)
+- Có lớp kết dính (Adhesive)
+2) Eutectic Bonding
+- Kết hợp kim loại lan tỏa
+3) So sánh khác biệt cấu trúc
+- Điện trở nhiệt
+- Độ bền liên kết
+- Nhiệt độ công đoạn
+- Chi phí","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"2","Chuyên sâu quy trình Die Attach (gắn chip)","Điều kiện kết dính và cấu trúc dẫn nhiệt","1) Ảnh hưởng độ dày chất kết dính
+2) Cấu trúc tăng điện trở khi xuất hiện Void
+3) Thay đổi đường dẫn khi giảm độ dày Die
+4) Tập trung nhiệt → khả năng mở rộng Crack","","Offline class","","ThS. Đỗ Văn Quyền","","","Slide bài giảng Samsung","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Die Attach (gắn chip)","Phân tích cơ chế các lỗi chính","1) Void
+- Không đầy đủ
+- Thay đổi độ nhớt
+- Trải keo không đồng đều
+2) Die Tilt
+- Áp lực không đều
+- Warpage
+3) Delamination
+- Không khớp CTE
+- Thiếu chất kết dính
+- Phân tích nguyên nhân liên quan đến Dicing","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Die Attach (gắn chip)","Phân tích độ nhạy biến số công đoạn và thực hành sự cố OSAT","1) Phân tích dựa trên trường hợp
+- Case A: Tăng Die Crack 
+- Case B: Tăng Void
+- Case C: Tăng Die Tilt 
+2) Đối với từng case:
+- Ảnh hưởng của Back Grinding
+- Ảnh hưởng của Dicing 
+- Ảnh hưởng các biến số Die Attach
+- Xác định từng bước Root Cause","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Die Attach (gắn chip)","Phân tích kết nối công đoạn dựa trên XR","1) Chủ đề XR
+- Nội dung hậu công đoạn 2
+2) Hoạt động sau XR
+- Hiển thị khu vực có khả năng xuất hiện Void
+- Minh họa ảnh hưởng của Die Tilt đến Wire Bond
+- Phân tích đường dẫn nhiệt","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"3","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Vị trí công đoạn Wire Bond và cơ chế hình thành vật lý","1) Xác định lại vai trò Wire Bond
+- Kết nối điện giữa Die Pad ↔ Leadframe
+- Không chỉ là kết nối đơn thuần mà là kết nối điện – nhiệt – cơ học
+2) Quá trình hình thành Ball Bond
+- EFO (Electronic Flame Off)
+- Tạo Free Air Ball
+- 1st Bond (Ball Bond)
+- 2nd Bond (Stitch Bond)
+3) Nguyên lý hình thành kết dính
+- Kết hợp áp lực + sóng siêu âm + nhiệt
+- Kết hợp kim loại lan tỏa
+- Tạo IMC (Intermetallic Compound) ban đầu
+4) Câu hỏi cấu trúc
+- Wire Bond khác gì so với chỉ mối hàn thông thường?","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Biến số Bond và mối quan hệ với chất lượng kết dính","1) Các biến số chính
+- Bond Force
+- Ultrasonic Power
+- Bond Time
+- Bond Temperature
+- Loop Height
+2) Phân tích mối quan hệ biến số – kết quả
+- Tăng Force → khả năng hư Pad tăng
+- Tăng US Power → khả năng IMC phát triển quá mức
+- Tăng Bond Time → thay đổi diện tích kết dính
+3) Cấu trúc độ bền kết dính
+- Mối quan hệ độ dày IMC – độ bền kết dính
+- Dễ hỏng khi điều kiện quá mức
+4) Bài tập phân tích
+- “Nếu Bond Force tăng 10%, rủi ro nào có thể xảy ra?”","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","18h00-21h00","","","","","","","","","","","","","",""
+"2","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Cơ chế tăng trưởng IMC và độ tin cậy dài hạn","1) Khái niệm IMC(Intermetallic Compound) 
+- Cấu trúc Au–Al IMC
+2) Khái niệm Kirkendall Void
+- Cơ chế phản ứng lan tỏa
+- Tốc độ lan tỏa khác nhau
+- Cấu trúc hình thành Void
+3) Thay đổi trong Thermal Cycling
+- Tăng trưởng IMC
+- Tăng độ giòn kết dính
+4) Liên hệ với độ tin cậy
+- Tăng nguy cơ Heel Crack
+- Khả năng Lift-off tăng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Các loại lỗi chính và phân tích Root Cause","1) Bond Lift
+- Pad bị ôxy hóa
+- Thiếu năng lượng kết dính
+- Thiếu IMC
+2) Heel Crack
+- Quá tải Loop Stress
+- Tăng IMC giòn
+- Lặp lại nhiệt độ cao
+3) Non-Stick
+- Pad bị ôxy hóa
+- Thiếu nhiệt
+4) Pad Cratering
+- Quá sóng siêu âm
+- Tăng tính dễ vỡ Die (wafer mỏng)","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Phân tích kết nối giữa các công đoạn – Grinding, Dicing, Attach","1) Ảnh hưởng trạng thái bề mặt Pad
+- Tàn dư oxy hóa
+- Không đồng đều CMP
+2) Ảnh hưởng Die Warpage 
+- Die Tilt
+- Chiều cao Loop không đồng đều
+3) Nguy cơ khi Micro Crack tồn tại
+- Khả năng Crack lan khi ép Bond
+4) Ảnh hưởng cấu trúc dẫn nhiệt
+- Die Attach Void → tăng nhiệt cục bộ
+- Nhiệt tăng → tăng tốc độ tăng trưởng IMC","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích chuyên sâu quy trình Wire Bond (nối dây)","Phân tích và thực hành sự cố Wire Bond trên XR","1) Phân tích tập trung giai đoạn Wire Bond trong XR của packaging truyền thống
+- Hiển thị các điểm nhạy cảm với Bond
+- Minh họa ảnh hưởng của Die Tilt đến chiều cao Loop
+- Liên kết lỗi Bond → Path Field Failure","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Molding","Vị trí công đoạn Molding và vai trò cấu trúc","1) Tái định nghĩa mục tiêu Molding
+- Hình thành ngoại quan
+- Bảo vệ môi trường (Moisture, Shock)
+- Cố định cơ học
+- Một phần hình thành đường dẫn nhiệt
+2) Vị trí trong toàn bộ luồng công đoạn
+- Back Grinding → Dicing → Attach → Bond → Molding
+3) Câu hỏi cấu trúc
+- Molding là công đoạn chỉ bảo vệ đơn thuần hay có sinh ứng suất?
+4) Các hạng mục kiểm tra Die
+- Die Thickness
+- Kiểm tra Die Crack
+- Kiểm tra Void
+- Bond Loop Height","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Molding","Đặc tính vật liệu EMC và sinh ứng suất","1) Thành phần EMC
+- Epoxy Resin
+- Silica Filler
+- Curing Agent
+2) Các đặc tính chính
+- CTE (Coefficient of Thermal Expansion)
+- Tg (Glass Transition Temperature)
+- Elastic Modulus
+- Hệ số co rút
+3) Cấu trúc chênh lệch CTE
+Silicon (~3 ppm/°C)
+Leadframe (~17 ppm/°C)
+EMC (~15–25 ppm/°C)
+→ Sinh ứng suất khi làm mát
+Câu hỏi phân tích:
+- Tại sao sự khác biệt CTE làm tăng nguy cơ Delamination?","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Molding","Cơ chế sinh Warpage","1) Định nghĩa Warpage
+- Hiện tượng uốn cong của package
+2) Nguyên nhân sinh Warpage
+- Cấu trúc không đối xứng
+- Die lệch vị trí
+- Giảm độ dày Die
+- Sự tồn tại của Die Attach Void
+3) Khái niệm đo Warpage
+- Shadow Moiré
+- 3D Profile
+4) Ảnh hưởng của Warpage đến các công đoạn tiếp theo
+- Lỗi Trim & Form
+- Lỗi thực tế trên PCB
+- Tăng Solder Joint Stress ","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Molding","Cơ chế Delamination và Crack","1) Vị trí phát sinh Delamination
+- Giữa Die/EMC
+- Giữa Leadframe/EMC
+- Giữa Die Attach
+2) Cấu trúc xâm nhập Moisture
+- Hấp thụ ẩm
+- Tăng Vapor Pressure trong Reflow
+- Popcorn Failure
+3) Đường đi của Crack
+- Grinding Damage → Dicing Micro Crack
+→ Tập trung ứng suất Molding → lan rộng Crack
+4) Liên kết với Bond
+- Tăng nguy cơ Heel Crack
+- Ứng suất tăng tại vùng IMC giòn","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Molding","Phân tích Root Cause dựa trên Full Flow","Case Study 1
+- Tăng Die Crack + Warpage
+1) Các mục phân tích:
+- Ảnh hưởng của Back Grinding
+- Ảnh hưởng Dicing Damage
+- Kiểm tra Die Attach Void
+- Ảnh hưởng CTE của EMC
+Case Study 2
+Tăng Delamination 
+2) Các mục phân tích:
+- Nhiễm bẩn bề mặt Die
+- Độ bám dính Attach
+- Sự co rút của EMC
+- Vấn đề Cure Profile","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Molding","Thực hành phân tích Molding và ứng suất dựa trên XR","1) Chủ đề XR
+- Nội dung hậu công đoạn 2
+2) Hoạt động sau XR
+- Hiển thị các điểm có thể tập trung ứng suất
+- Minh họa thay đổi đường dẫn ứng suất khi giảm độ dày Die
+- Phân tích đường dẫn ứng suất khi có Void","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Vị trí công đoạn Singulation và ý nghĩa cấu trúc","1) Định nghĩa Singulation
+- Tách Strip → từng package riêng lẻ
+- Phương pháp Saw / Punching
+2) Vị trí trong toàn bộ luồng công đoạn
+- Grinding → Dicing → Attach → Bond → Molding → Singulation
+3) Câu hỏi cấu trúc
+- Tại sao Singulation là công đoạn cuối nhưng vẫn ảnh hưởng đến độ tin cậy?
+4) So sánh phương pháp cắt
+- Saw Singulation
+- Punch Singulation
+- So sánh đặc tính sinh ứng suất của từng phương pháp","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Cơ chế Saw Singulation và mối quan hệ biến số","1) Cấu trúc Blade 
+- Diamond Grit
+- Blade Thickness
+- Bond Type
+2) Biến số chính
+- Spindle Speed
+- Feed Rate
+- Điều kiện Cooling 
+- Trạng thái Blade Wear 
+3) Phân tích mối quan hệ biến số – kết quả
+- Tăng Feed → khả năng tăng Edge Chipping
+- Lưỡi cưa(Blade) mòn → tăng Burr
+- Làm mát không đủ → tăng hư hại Die","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"2","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Cấu trúc phát sinh Edge Crack & Chipping","1) Nguyên nhân phát sinh Edge Chipping 
+- Tốc độ cắt quá cao
+- Ứng suất dư bên trong package
+- Tính giòn của EMC
+2) Cơ chế lan truyền Crack
+- Grinding Damage → cân bằng nội bộ Die
+- Dicing Micro Crack
+- Ứng suất tập trung do Molding
+- Mở rộng trong Singulation
+3)Nguyên nhân Crack lan rộng trên PCB
+- Tác động nhiệt Reflow
+- Ứng suất tập trung khi ép Lead","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Trim & Form và ứng suất cơ học","1) Công đoạn Trim
+- Cắt Lead
+- Khả năng phát sinh Burr
+2) Công đoạn Form 
+- Lead Bend
+- Vị trí tập trung ứng suất
+3) Ảnh hưởng của biến đổi Leadframe và package
+- Vấn đề Lead Coplanarity 
+- Lỗi thực tế trên PCB
+4) Liên kết với Warpage
+- Molding Warpage + Form → mở rộng biến dạng cuối cùng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Lỗi ngoại quan cuối cùng và liên kết hiệu năng điện/nhiệt","1) Khi Coplanarity lỗi
+- Lỗi kết nối
+- Tăng Solder Joint Stress 
+2) Khi Edge Crack lan rộng
+- Tăng Moisture Ingress 
+- Mở rộng Delamination
+3) Khi xuất hiện Burr
+- Khả năng Short
+- Lỗi ngoại quan → khiếu nại khách hàng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Chuyên sâu quy trình Singulation và gia công bề ngoài sản phẩm","Phân tích chất lượng Singulation & ngoại quan dựa trên XR","1) Chủ đề XR
+- Nội dung hậu công đoạn 2
+2) Hoạt động sau XR
+- Hiển thị các điểm có khả năng phát sinh Crack
+- Minh họa cấu trúc kết hợp ứng suất Warpage + Singulation
+- Phân tích liên kết giữa các công đoạn
+- Grinding → Dicing → Attach → Bond → Mold → Singulation
+- Tổng hợp ảnh hưởng của từng công đoạn đến chất lượng ngoại quan cuối cùng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","Hiệu năng điện và giới hạn cấu trúc","1) Wire Length ↔ tăng trở kháng
+- Tăng Inductance 
+- RC Delay
+2) Cấu trúc cơ bản Crosstalk
+3) Giới hạn cấu trúc gói dựa trên Leadframe","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","Cấu trúc dẫn nhiệt và Thermal Resistance","1) Phân tích đường dẫn nhiệt:
+- Die → Attach → Leadframe → PCB
+- Khái niệm RθJC / RθJA 
+2) Die Attach Void ↔ tăng trở nhiệt
+- Cấu trúc phát sinh Hot Spot
+- Rủi ro nhiệt của cấu trúc Die mỏng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","Kết hợp thử nghiệm độ tin cậy JEDEC và cấu trúc","- Thermal Cycling
+- HTOL
+- HAST
+- MSL
+- Phân tích mối quan hệ lỗi – thử nghiệm","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","Phân tích mối quan hệ lỗi – thử nghiệm – hiệu năng công đoạn","1) Phân tích dựa trên Case:
+① Back Grinding Damage
+② Dicing Micro Crack
+③ Die Attach Void
+④ IMC 과성장
+⑤ Singulation Edge Crack
+- Ảnh hưởng đặc tính điện
+- Ảnh hưởng đặc tính nhiệt
+- Ảnh hưởng thử nghiệm độ tin cậy
+- Rủi ro với khách hàng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","Thiết kế tích hợp Final Process & Traceability","1) Vị trí Marking 
+- Singulation → Marking → Final Inspection → Packing
+2) So sánh Laser vs Ink
+- Laser Burn Risk
+- Nguy cơ Ink Burn
+3) Các yếu tố Traceability 
+- Wafer Lot
+- Grinding Lot
+- Mold Lot
+- Date Code
+4) Thiết kế quy trình ngược
+- Khiếu nại khách hàng → Kiểm tra Marking Code → Theo dõi Lot sản xuất → Xác định Root Cause dựa trên lịch sử công đoạn","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Tích hợp điện – nhiệt – độ tin cậy – Traceability + ứng dụng VR/XR","XR dựa trên phân tích hiệu năng – độ tin cậy","1) Chủ đề XR 
+- Nội dung hậu công đoạn 1, 2","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"2","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Cấu trúc Yield OSAT và khái niệm FPY","1) Phân giai đoạn Yield
+- Wafer Incoming Yield
+- Assembly Yield
+- Final Yield
+- Field Yield
+2) Định nghĩa FPY(First Pass Yield) 
+- Tỷ lệ sản phẩm đi qua mà không cần rework
+- Ý nghĩa FPY trong OSAT
+3) Cấu trúc Yield tích lũy qua công đoạn","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Phân tích độ nhạy Yield theo công đoạn","1) Độ nhạy Yield theo công đoạn
+2) So sánh đặc tính công đoạn
+3) Phân tích chi phí công đoạn","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Cấu trúc Rework vs Scrap Cost ","1) Rework Cost
+- Tăng nhân công
+- Tăng thời gian thiết bị
+- Tăng Cycle Time
+2) Scrap Cost
+- Chi phí Die 
+- Chi phí Leadframe 
+- Chi phí tích lũy theo công đoạn
+3) Cấu trúc chi phí tích lũy
+- Scrap sau Back Grinding
+- So sánh Molding sau Scrap ","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Yield và hiệu suất thiết bị","1) Khái niệm cơ bản về OEE
+- Availability
+- Performance
+- Quality
+2) Mối quan hệ giữa Downtime thiết bị và Yield
+3) Kết nối với PM/BM và Yield","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Cấu trúc áp lực Yield theo yêu cầu khách hàng","1) Tăng cường yêu cầu khách hàng
+- Yêu cầu Coplanarity chặt hơn 
+- Giảm tỷ lệ Void
+- Giới hạn độ dày IMC 
+2) Cân bằng giữa Yield và tiêu chuẩn chất lượng
+3) Cấu trúc biên OSAT
+- Cạnh tranh theo từng công đoạn
+- Cấu trúc lợi nhuận dựa trên Yield","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Phân tích cấu trúc Yield (tỷ lệ đạt), FPY (tỷ lệ đạt lần đầu) và chi phí trong ngành OSAT","Tái phân tích độ nhạy Yield trên XR","1) Nội dung XR hậu công đoạn
+2) Tổng hợp kết quả
+- Grinding → bước đầu nhưng ảnh hưởng tới Die Cost
+- Bond → độ nhạy Yield cao
+- Molding → khi xảy ra Scrap, tổn thất cực đại","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Khái niệm Root Cause","1) Symptom vs Root Cause
+- Symptom: Hiện tượng quan sát được
+- Root Cause: Nguyên nhân gốc rễ
+2) Tại sao phân tích Root Cause quan trọng?
+- Ngăn ngừa tái phát
+- Tiết kiệm chi phí
+- Đảm bảo uy tín với khách hàng
+3) Đặc trưng hậu công đoạn
+- Tồn tại ảnh hưởng tích lũy qua nhiều công đoạn
+- Luôn có khả năng ảnh hưởng từ công đoạn trước","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Khung cơ bản phân tích Root Cause","1) Phương pháp 5 Why 
+2) Trình tự phân tích dựa trên công đoạn
+- Xác định hiện tượng
+- Xác định phạm vi ảnh hưởng
+- Tách công đoạn
+- Dự đoán biến đổi của các biến số
+3) Tiếp cận đặc thù hậu công đoạn","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Ví dụ 1:Tăng Bond Lift","1) Symptom
+- Tăng Open trong Final Test
+- Khả năng liên quan:
+- Back Grinding Damage → Die Warpage
+→ Bond Pressure không đồng đều → Bond Lift","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Ví dụ 2: Tăng Delamination ","1) Symptom
+- Tăng Delamination trong HAST
+- Khả năng liên quan:
+- Grinding Damage → Micro Crack
+→ Ứng suất tập trung từ Molding → mở rộng Delamination","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Ví dụ 3: Field Failure","1) Symptom
+- Lỗi phát sinh trong môi trường vận hành cao
+- Liên kết với ảnh hưởng kinh doanh
+- Field Failure → RMA Cost
+- Ảnh hưởng uy tín khách hàng","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"1","Khái niệm Root Cause và phân tích các case study trong công đoạn sau OSAT","Tổng hợp Root Cause trên XR","- 1) Chủ đề XR
+- Nội dung hậu công đoạn 2
+2) Hoạt động sau XR
+- Giảng viên sẽ theo Full Flow của quy trình sản xuất và tổng hợp từ góc nhìn Root Cause","Slide bài giảng Samsung","Offline class","","ThS. Đỗ Văn Quyền","","","","","","","","","","","","","","",""
+"42","","","","","","","","","","","","","","","","","","","","","",""

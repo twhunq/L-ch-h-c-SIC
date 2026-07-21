@@ -1,0 +1,13 @@
+{
+  "name": "lich-hoc-sic2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lịch học SIC2026 + Telegram notify trên Vercel Cron",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
