@@ -56,17 +56,20 @@
       font-size: 0.78rem;
       margin-top: 2px;
     }
-    .icon-btn {
-      width: 40px; height: 40px;
+    .btn-refresh {
       border-radius: 12px;
       border: 1px solid var(--line);
       background: var(--card);
-      color: var(--text);
-      font-size: 1.1rem;
+      color: var(--blue);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 12px;
       cursor: pointer;
       flex-shrink: 0;
+      white-space: nowrap;
     }
-    .icon-btn:disabled { opacity: 0.5; }
+    .btn-refresh:disabled { opacity: 0.5; cursor: wait; }
 
     /* Focus card – buổi quan trọng nhất */
     .focus {
@@ -679,7 +682,7 @@
             <h1>Lịch học SIC</h1>
             <div class="sub">${esc(state.data.course || "SIC2026")} · ${esc(updated)}</div>
           </div>
-          <button class="icon-btn" id="btnRefresh" title="Làm mới từ Sheet" aria-label="Làm mới">↻</button>
+          <button class="btn-refresh" id="btnRefresh" type="button" title="Làm mới từ Sheet">Cập nhật lịch học</button>
         </header>
 
         ${focusHtml(focus)}
@@ -707,6 +710,7 @@
       document.getElementById("btnRefresh")?.addEventListener("click", async () => {
         const btn = document.getElementById("btnRefresh");
         btn.disabled = true;
+        btn.textContent = "Đang tải…";
         try {
           state.data = await loadData(true);
           toast("Đã cập nhật lịch");
@@ -714,6 +718,7 @@
         } catch (e) {
           toast("Không tải được Sheet");
           btn.disabled = false;
+          btn.textContent = "Cập nhật lịch học";
         }
       });
 
